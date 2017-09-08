@@ -1,0 +1,290 @@
+/*
+Theme Name: cathy-kieffer
+Theme URI: http://underscores.me/
+Author: julien alix
+Author URI: https://www.aj-numerique.fr
+Description: Cathy Kieffer website
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: LICENSE
+Text Domain: cathykieffer
+Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
+
+cathy-kieffer is based on Underscores http://underscores.me/, (C) 2012-2016 Automattic, Inc.
+Underscores is distributed under the terms of the GNU GPL v2 or later.
+
+Normalizing styles have been helped along thanks to the fine work of
+Nicolas Gallagher and Jonathan Neal http://necolas.github.io/normalize.css/
+*/
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/*----------------------------
+------------Header------------
+--------------------------  */
+
+.bandeau {
+	max-height: 12 rem;
+	width: 100%;
+	background-image: url(img/header-picture-opa195.png);
+	background-repeat: no-repeat;
+	-webkit-background-size: cover;
+	background-size: cover;
+	color: #92278f;
+	border-bottom: solid 0.1rem orange;
+	text-align: center;
+	font-family: 'Unna', serif;
+	font-weight: bold;
+	font-size: 3rem;
+	padding: 2.5rem 0;
+}
+
+#site-navigation ul {
+	padding: 0 1rem 1rem 1rem;
+	/* text-align: center; */
+	display: flex;
+	justify-content: center;
+}
+
+#site-navigation li {
+	border-radius: 0.2rem;
+	margin: 0rem 3%;
+	display: inline-flex;
+	align-items: center;
+	text-align: center;
+	min-height: 2.1rem;
+	transition: border 0.6s;
+}
+
+#site-navigation li:hover {
+	border: solid 0.1rem white;
+}
+
+#site-navigation a {
+	color: inherit;
+	text-decoration: none;
+	font-size: 1.2rem;
+	width: 10rem;
+	padding: 0.5rem;
+	transition: color 0.6s;
+}
+
+#site-navigation ul li:nth-child(1){
+	border: solid 0.1rem #faaf3a;
+	color: #faaf3a;
+	transition: background-color 0.6s;
+}
+
+#site-navigation ul li:nth-child(1):hover, #site-navigation ul li:nth-child(1):focus, #site-navigation ul li:nth-child(1):active{
+	background-color: #faaf3a;
+}
+
+#site-navigation ul li:nth-child(2){
+	border: solid 0.1rem #3fa9f5;
+	color: #3fa9f5;
+	transition: background-color 0.6s;
+}
+
+#site-navigation ul li:nth-child(2):hover, #site-navigation ul li:nth-child(2):focus, #site-navigation ul li:nth-child(2):active {
+	background-color: #3fa9f5;
+}
+
+#site-navigation ul li:nth-child(3){
+	border: solid 0.1rem #7ac943;
+	color: #7ac943;
+	transition: background-color 0.6s;
+}
+
+#site-navigation ul li:nth-child(3):hover, #site-navigation ul li:nth-child(3):focus, #site-navigation ul li:nth-child(3):active{
+	background-color: #7ac943;
+}
+
+#site-navigation ul li:nth-child(4){
+	border: solid 0.1rem #93278f;
+	color: #93278f;
+	transition: background-color 0.6s;
+}
+
+#site-navigation ul li:nth-child(4):hover, #site-navigation ul li:nth-child(4):focus, #site-navigation ul li:nth-child(4):active {
+	background-color: #93278f;
+}
+
+#site-navigation a:hover, #site-navigation a:focus, #site-navigation a:active {
+	color: white;
+}
+
+/*----------------------------
+------------General-----------
+--------------------------  */
+
+.main-page {
+	display: inline-flex;
+	margin: 1rem 4.5rem;
+	width: -moz-available;
+}
+
+.main-block {
+	min-width: 70%;
+	text-align: justify;
+	font-size: 1.2rem;
+	padding: 0rem 2rem;
+}
+
+.main-block_line-height {
+	line-height: 1.2rem;
+}
+
+.page-margin {
+	/* max-width: 15%; */
+	padding: 1rem
+}
+
+.page-margin img {
+	display: block;
+	max-width: 100%;
+	height: auto;
+}
+
+h2 {
+	font-weight: bold;
+	font-size: 1.6rem;
+	padding: 1.6rem 0;
+}
+
+h3 {
+	text-decoration: underline;
+	padding: 1.2rem 0;
+	font-size: 1.2rem;
+}
+
+/*----------------------------
+---------------Home-----------
+--------------------------  */
+
+.home ul .current-menu-item {
+	border: solid 0.1rem white;
+	background-color: #faaf3a;
+}
+
+.home ul .current-menu-item a {
+	color: white !important;
+}
+
+.home {
+	color: #93278f;
+	font-size: 62.5%;
+}
+
+/*----------------------------
+---------Prestations----------
+--------------------------  */
+
+.page-template-page-prestations ul .current-menu-item {
+	border: solid 0.1rem white;
+	background-color: #3fa9f5;
+}
+
+.page-template-page-prestations ul .current-menu-item a {
+	color: white !important;
+}
+
+.page-template-page-prestations {
+	color: #3fa9f5;
+	font-size: 62.5%;
+}
+
+.page-template-page-prestations h2 {
+	padding: 1.6rem 0 0 0;
+}
+/*----------------------------
+---------Questions Pratiques----------
+--------------------------  */
+
+.page-template-page-questions ul .current-menu-item {
+	border: solid 0.1rem white;
+	background-color: #7ac943;
+}
+
+.page-template-page-questions ul .current-menu-item a {
+	color: white !important;
+}
+
+.page-template-page-questions .main-block {
+	display: inline-flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-content: flex-start;
+}
+
+.page-template-page-questions .main-block div {
+	max-width: 40%;
+	padding: 1rem;
+	margin: 1rem;
+	text-align: justify;
+	color: #7ac943;
+}
+
+/*----------------------------
+---------Qui suis-je----------
+--------------------------  */
+
+.page-template-page-qui-suis-je ul .current-menu-item {
+	border: solid 0.1rem white;
+	background-color: #93278f;
+}
+
+.page-template-page-qui-suis-je ul .current-menu-item a {
+	color: white !important;
+}
+
+.page-template-page-qui-suis-je {
+	color: #93278f;
+	font-size: 62.5%;
+}
