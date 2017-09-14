@@ -103,7 +103,7 @@ table {
 	transition: border 0.6s;
 }
 
-#site-navigation li:hover {
+#site-navigation li:hover, #site-navigation li:active, #site-navigation li:focus {
 	border: solid 0.1rem white;
 }
 
@@ -137,13 +137,13 @@ table {
 }
 
 #site-navigation ul li:nth-child(3){
-	border: solid 0.1rem #7ac943;
-	color: #7ac943;
+	border: solid 0.1rem green;
+	color: green;
 	transition: background-color 0.6s;
 }
 
 #site-navigation ul li:nth-child(3):hover, #site-navigation ul li:nth-child(3):focus, #site-navigation ul li:nth-child(3):active{
-	background-color: #7ac943;
+	background-color: green;
 }
 
 #site-navigation ul li:nth-child(4){
@@ -249,7 +249,7 @@ h3 {
 
 .page-template-page-questions ul .current-menu-item {
 	border: solid 0.1rem white;
-	background-color: #7ac943;
+	background-color: green;
 }
 
 .page-template-page-questions ul .current-menu-item a {
@@ -268,7 +268,7 @@ h3 {
 	padding: 1rem;
 	margin: 1rem;
 	text-align: justify;
-	color: #7ac943;
+	color: green;
 }
 
 /*----------------------------
