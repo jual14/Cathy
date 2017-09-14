@@ -45,6 +45,12 @@
 	// Get all the link elements within the menu.
 	links    = menu.getElementsByTagName( 'a' );
 
+	//onclick links
+	links.addEventListener('click', changeColorFunction);
+	function changeColorFunction() {
+		console.log('salut');
+	};
+
 	// Each time a menu link is focused or blurred, toggle focus.
 	for ( i = 0, len = links.length; i < len; i++ ) {
 		links[i].addEventListener( 'focus', toggleFocus, true );

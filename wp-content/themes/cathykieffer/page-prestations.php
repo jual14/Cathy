@@ -18,6 +18,7 @@
     // The Query
     $query_presta = new WP_Query( $args );
 
+    
     // The Loop
     if ( $query_presta->have_posts() ) {
         while ( $query_presta->have_posts() ) {
