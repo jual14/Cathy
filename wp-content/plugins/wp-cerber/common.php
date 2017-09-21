@@ -45,11 +45,11 @@ if ( ! defined( 'WPINC' ) ) { exit; }
 function cerber_admin_link($tab = '', $args = array()){
 	//return add_query_arg(array('record_id'=>$record_id,'mode'=>'view_record'),admin_url('admin.php?page=storage'));
 
-	if ( in_array( $tab, array( 'recaptcha' ) ) ) {
-		$page = 'cerber-'.$tab;
+	if ( in_array( $tab, array( 'recaptcha', 'antispam' ) ) ) {
+		$page = 'cerber-recaptcha';
 		$tab = null;
 	}
-	if ( in_array( $tab, array( 'imex', 'diagnostic', 'license' ) ) ) {
+	elseif ( in_array( $tab, array( 'imex', 'diagnostic', 'license' ) ) ) {
 		$page = 'cerber-tools';
 	}
 	else $page = 'cerber-security';
@@ -342,6 +342,7 @@ function cerber_get_labels($type = 'activity'){
 		// Cerber actions - common
 		$labels[12]=__('Citadel activated!','wp-cerber');
 		$labels[16]=__('Spam comment denied','wp-cerber');
+		$labels[17]=__('Spam form submission denied','wp-cerber');
 
 		// Cerber status // TODO: should be separated as another list ---------
 		$labels[13]=__('Locked out','wp-cerber');

@@ -119,7 +119,11 @@ function cerber_settings_init(){
 	add_settings_section('antibot', __('Cerber antispam engine','wp-cerber'), 'cerber_sapi_section', CERBER_OPT_C);
 	add_settings_field('botscomm',__('Comment form','wp-cerber'),'cerberus_field_show',CERBER_OPT_C,'antibot',array('group'=>$tab,'option'=>'botscomm','type'=>'checkbox','label'=>__('Protect comment form with bot detection engine','wp-cerber') ));
 	add_settings_field('botsreg',__('Registration form','wp-cerber'),'cerberus_field_show',CERBER_OPT_C,'antibot',array('group'=>$tab,'option'=>'botsreg','type'=>'checkbox','label'=>__('Protect registration form with bot detection engine','wp-cerber') ));
-	//add_settings_field('botsany',__('Any form','wp-cerber'),'cerberus_field_show',CERBER_OPT_C,'antibot',array('group'=>$tab,'option'=>'botsany','type'=>'checkbox','label'=>__('Protect all forms with bot detection engine','wp-cerber') ));
+	add_settings_field('botsany',__('Other forms','wp-cerber'),'cerberus_field_show',CERBER_OPT_C,'antibot',array('group'=>$tab,'option'=>'botsany','type'=>'checkbox','label'=>__('Protect all forms on the website with bot detection engine','wp-cerber') ));
+
+	add_settings_section('antibot_more', __('Adjust antispam engine','wp-cerber'), 'cerber_sapi_section', CERBER_OPT_C);
+	add_settings_field('botssafe',__('Safe mode','wp-cerber'),'cerberus_field_show',CERBER_OPT_C,'antibot_more',array('group'=>$tab,'option'=>'botssafe','type'=>'checkbox','label'=>__('Use less restrictive policies (allow AJAX)','wp-cerber') ));
+	add_settings_field('botsnoauth',__('Logged in users','wp-cerber'),'cerberus_field_show',CERBER_OPT_C,'antibot_more',array('group'=>$tab,'option'=>'botsnoauth','type'=>'checkbox','label'=>__('Disable bot detection engine for logged in users','wp-cerber') ));
 
 	add_settings_section('commproc', __('Comment processing','wp-cerber'), 'cerber_sapi_section', CERBER_OPT_C);
 	add_settings_field('spamcomm',__('If a spam comment detected','wp-cerber'),'cerberus_field_show',CERBER_OPT_C,'commproc',array('group'=>$tab, 'option'=>'spamcomm', 'type'=>'select', 'set' => array('Deny it completely', 'Mark it as spam')));
@@ -659,7 +663,11 @@ function cerber_get_defaults($field = null) {
 		),
 		CERBER_OPT_C => array(
 			'botscomm'  => 1,
-			'botsreg'  => 1,
+			'botsreg'  => 0,
+			'botsany'  => 0,
+			'botssafe'  => 0,
+			'botsnoauth'  => 1,
+
 			'spamcomm' => 0,
 			'trashafter'  => 7,
 			'trashafter-enabled'  => 0,

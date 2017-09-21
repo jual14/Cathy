@@ -3,8 +3,9 @@ Contributors: gioni
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SR8RJXFU35EW8
 Tags: security, login, custom login, protect, antispam, woocommerce, recaptcha, captcha, activity, log, logging, block, fail2ban, monitoring, rename wp login, whitelist, blacklist, wordpress security, xmlrpc, user enumeration, hardening, authentication, notification, pushbullet, brute force, bruteforce, users
 Requires at least: 4.4
+Requires PHP: 5.3
 Tested up to: 4.8.1
-Stable tag: 5.0
+Stable tag: 5.1
 License: GPLv2
 
 Protection against hacker attacks and bots. Restrict access with IP access lists, track user and bot activity. reCAPTCHA. Limit login attempts.
@@ -95,7 +96,8 @@ Massive botnet brute force attack? That's no longer a problem. **Citadel mode** 
 * Dutch, thanks to [Bernardo](https://twitter.com/bernardohulsman)
 * Français, thanks to [hardesfred](https://profiles.wordpress.org/hardesfred/)
 * Norwegian (Bokmål), thanks to [Eirik Vorland](https://www.facebook.com/KjellDaSensei)
-* Portuguese, thanks to [Felipe Turcheti](http://felipeturcheti.com)
+* Portuguese (Portugal), thanks to Helderk
+* Portuguese (Brazil), thanks to [Felipe Turcheti](http://felipeturcheti.com)
 * Polski, thanks to [Wojciech Górski](https://www.facebook.com/profile.php?id=100010484049780)
 * Spanish, thanks to Ismael Murias and [leemon](https://profiles.wordpress.org/leemon/)
 * Український, thanks to [Nadia](https://profiles.wordpress.org/webbistro)
@@ -248,6 +250,11 @@ To get access to your dashboard you need to copy the WP Cerber Reset folder to t
 
 
 == Changelog ==
+
+= 5.1 =
+* New: Anti-spam and anti-bot for contact and other forms. Cerber antispam and bot detection engine now protects all forms on a website. It’s compatible with virtually any form. Tested with Caldera Forms, Gravity Forms, Contact Form 7, Ninja Forms, Formidable Forms, Fast Secure Contact Form, Contact Form by WPForms.
+* New: Portuguese of Portugal translation has been added, thanks to Helderk.
+* Bug fixed: A user with admin account is unable to approve comments with pending status in the WordPress Dashboard.
 
 = 5.0 =
 * New: A new antispam and bot detection engine that protects comment and user registration forms from bot attacks. After several attempts bot IP will be locked out.

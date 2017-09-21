@@ -474,7 +474,8 @@ add_action('shutdown','cerber_push_lab');
 function cerber_push_lab() {
 	global $wp_cerber;
 
-	if (!$wp_cerber->getSettings('cerberlab')) return;
+	//if (!$wp_cerber->getSettings('cerberlab') || cerber_get_options('cerberlab')) return;
+	if (!cerber_get_options('cerberlab')) return;
 	if ( get_transient( '_cerberpush_' ) ) {
 		return;
 	}

@@ -1038,14 +1038,14 @@ function cerber_show_dashboard() {
 	echo '<div style="padding-right: 30px;">';
 
 	$period = time() - 24 * 3600;
-	$unique_ip = $wpdb->get_var('SELECT COUNT(DISTINCT ip) FROM '. CERBER_LOG_TABLE .' WHERE activity IN (10, 11, 16, 40, 50, 51, 52, 53, 54) AND stamp > '.$period);
+	$unique_ip = $wpdb->get_var('SELECT COUNT(DISTINCT ip) FROM '. CERBER_LOG_TABLE .' WHERE activity IN (10, 11, 16, 17, 40, 50, 51, 52, 53, 54) AND stamp > '.$period);
 	$kpi_locknum = $wpdb->get_var('SELECT COUNT(ip) FROM '. CERBER_BLOCKS_TABLE);
 
 	// TODO: Add spam performance as percentage Denied / Allowed comments
 
 	$kpi_list = array(
 		//array( __('Incidents detected','wp-cerber').'</a>', cerber_count_log( array( 16, 40, 50, 51, 52, 53, 54 ) ) ),
-		array( __('Malicious activities mitigated','wp-cerber').'</a>', cerber_count_log( array( 10, 11, 16, 40, 50, 51, 52, 53, 54 ) ) ),
+		array( __('Malicious activities mitigated','wp-cerber').'</a>', cerber_count_log( array( 10, 11, 16, 17, 40, 50, 51, 52, 53, 54 ) ) ),
 		array( __('Spam comments denied','wp-cerber'), cerber_count_log( array( 16 ) ) ),
 		array( __('Malicious IP addresses detected','wp-cerber'), $unique_ip ),
 		array( __('Lockouts occurred','wp-cerber'), cerber_count_log( array( 10, 11 ) ) ),
@@ -1074,7 +1074,7 @@ function cerber_show_dashboard() {
 	}
 
 	$links[] = '<a href="' . cerber_activity_link( array( 2 ) ) . '">' . __( 'User registered', 'wp-cerber' ) . '</a>';
-	$links[] = '<a href="' . cerber_activity_link( array( 10, 11, 16, 20, 40, 50, 51, 52, 53, 54, 55 ) ) . '">' . __( 'All suspicious activity', 'wp-cerber' ) . '</a>';
+	$links[] = '<a href="' . cerber_activity_link( array( 10, 11, 16, 17, 20, 40, 50, 51, 52, 53, 54 ) ) . '">' . __( 'All suspicious activity', 'wp-cerber' ) . '</a>';
 
 
 	$nav_links = '<span style="display: inline-block; margin-left: 1em;">' . implode(' &nbsp;|&nbsp; ',$links) . '</span>';
@@ -1082,7 +1082,7 @@ function cerber_show_dashboard() {
 	echo '<table class="cerber-margin"><tr><td><h2 style="margin-bottom:0.5em;">' . __( 'Activity', 'wp-cerber' ) . '</h2></td><td>' . $nav_links . '</td></tr></table>';
 
 	cerber_show_activity( array(
-		'filter_activity' => array( 1, 2, 5, 10, 11, 12, 16, 40, 41, 42, 50, 51, 52, 53, 54 ),
+		'filter_activity' => array( 1, 2, 5, 10, 11, 12, 16, 17, 40, 41, 42, 50, 51, 52, 53, 54 ),
 		'per_page'        => 10,
 		'no_navi'         => true,
 		'no_export'       => true,

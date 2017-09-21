@@ -74,7 +74,7 @@
     margin: 1em 0;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1200px) {
     #crb-aside {
         display: none;
     }
@@ -243,12 +243,21 @@
     text-decoration: none;
 }
 
+#crb-activity td:nth-child(2){
+    word-break: break-all;
+}
+
+.crb-activity {
+    margin-right: 0.7em;
+    white-space: nowrap;
+    word-break: keep-all;
+}
+
 .act-details{
     background-color: #999;
     color: #ffffff;
     display: inline-block;
     padding: 0 5px 0 5px;
-    margin-left: 0.7em;
 }
 p.act-url, .act-role{
     color: #777;
@@ -283,7 +292,7 @@ p.act-url{
 .green_label, .actv5 {
     display: inline-block;
     padding: 3px 5px 3px 5px;
-    margin: 1px;
+    /*margin: 1px;*/
     background-color: #83CE77;
     color: #000;
     /*border-radius: 5px;*/
@@ -291,10 +300,10 @@ p.act-url{
     border-right: 4px solid rgba(0, 0, 0, 0);
 }
 
-.red_label, .actv10, .actv11, .actv12, .actv16, .actv41, .actv42 {
+.red_label, .actv10, .actv11, .actv12, .actv16, .actv17, .actv41, .actv42, .actv53, .actv54 {
     display: inline-block;
     padding: 3px 5px 3px 5px;
-    margin: 1px;
+    /*margin: 1px;*/
     background-color: #FF5733;
     color: #000;
     /*border-radius: 5px;*/
@@ -407,6 +416,9 @@ p.act-url{
 
 
 /* Tabs */
+a.nav-tab:first-child{
+    margin-left: 0 !important;
+}
 .cerber-tabs span.dashicons {
     display: inline-block;
     vertical-align: middle;

@@ -88,6 +88,8 @@ function cerber_push_the_news( $version ) {
 	$news['5.0'][] = 'Added code to avoid possible conflict between Custom login URL and REST API.';
 	$news['5.0'][] = 'Added the <i>cerber_404_template</i> filter for specifying an alternative to the default 404 page not found template.';
 
+	$news['5.1'][] = 'Antispam and anti-bot engine for contact and other forms. Cerber antispam and bot detection engine now protects all forms on a website. It’s compatible with virtually any form. Tested with Caldera Forms, Gravity Forms, Contact Form 7, Ninja Forms, Formidable Forms, Fast Secure Contact Form, Contact Form by WPForms.';
+	$news['5.1'][] = 'Portuguese of Portugal translation has been added, thanks to Helderk.';
 
 	if ( ! empty( $news[ $version ] ) ) {
 		//$text = '<h3>What\'s new in WP Cerber '.$version.'</h3>';

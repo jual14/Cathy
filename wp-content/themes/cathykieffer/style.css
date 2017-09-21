@@ -24,7 +24,9 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.io/normalize.css/
    v2.0 | 20110126
    License: none (public domain)
 */
-
+html {
+	font-size: 62.5%;
+}
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -44,120 +46,9 @@ time, mark, audio, video {
 	font: inherit;
 	vertical-align: baseline;
 }
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
-}
 
 ol, ul {
 	list-style: none;
-}
-blockquote, q {
-	quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
-}
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
-
-/*----------------------------
-------------Header------------
---------------------------  */
-
-.bandeau {
-	max-height: 12 rem;
-	width: 100%;
-	background-image: url(img/header-picture-opa195.png);
-	background-repeat: no-repeat;
-	-webkit-background-size: cover;
-	background-size: cover;
-	color: #92278f;
-	border-bottom: solid 0.1rem orange;
-	text-align: center;
-	font-family: 'Unna', serif;
-	font-weight: bold;
-	font-size: 3rem;
-	padding: 2.5rem 0;
-}
-
-#site-navigation ul {
-	padding: 0 1rem 1rem 1rem;
-	/* text-align: center; */
-	display: flex;
-	justify-content: center;
-}
-
-#site-navigation li {
-	border-radius: 0.2rem;
-	margin: 0rem 3%;
-	display: inline-flex;
-	align-items: center;
-	text-align: center;
-	min-height: 2.1rem;
-	transition: border 0.6s;
-}
-
-#site-navigation li:hover, #site-navigation li:active, #site-navigation li:focus {
-	border: solid 0.1rem white;
-}
-
-#site-navigation a {
-	color: inherit;
-	text-decoration: none;
-	font-size: 1.2rem;
-	width: 10rem;
-	padding: 0.5rem;
-	transition: color 0.6s;
-}
-
-#site-navigation ul li:nth-child(1){
-	border: solid 0.1rem #faaf3a;
-	color: #faaf3a;
-	transition: background-color 0.6s;
-}
-
-#site-navigation ul li:nth-child(1):hover, #site-navigation ul li:nth-child(1):focus, #site-navigation ul li:nth-child(1):active{
-	background-color: #faaf3a;
-}
-
-#site-navigation ul li:nth-child(2){
-	border: solid 0.1rem #3fa9f5;
-	color: #3fa9f5;
-	transition: background-color 0.6s;
-}
-
-#site-navigation ul li:nth-child(2):hover, #site-navigation ul li:nth-child(2):focus, #site-navigation ul li:nth-child(2):active {
-	background-color: #3fa9f5;
-}
-
-#site-navigation ul li:nth-child(3){
-	border: solid 0.1rem green;
-	color: green;
-	transition: background-color 0.6s;
-}
-
-#site-navigation ul li:nth-child(3):hover, #site-navigation ul li:nth-child(3):focus, #site-navigation ul li:nth-child(3):active{
-	background-color: green;
-}
-
-#site-navigation ul li:nth-child(4){
-	border: solid 0.1rem #93278f;
-	color: #93278f;
-	transition: background-color 0.6s;
-}
-
-#site-navigation ul li:nth-child(4):hover, #site-navigation ul li:nth-child(4):focus, #site-navigation ul li:nth-child(4):active {
-	background-color: #93278f;
-}
-
-#site-navigation a:hover, #site-navigation a:focus, #site-navigation a:active {
-	color: white;
 }
 
 /*----------------------------
@@ -166,24 +57,19 @@ table {
 
 .main-page {
 	display: inline-flex;
-	margin: 1rem 4.5rem;
-	width: -moz-available;
+	margin: 1rem 3rem;
 }
 
 .main-block {
-	min-width: 70%;
+	width: 100%;
 	text-align: justify;
 	font-size: 1.2rem;
 	padding: 0rem 2rem;
 }
 
-.main-block_line-height {
-	line-height: 1.2rem;
-}
-
 .page-margin {
-	/* max-width: 15%; */
-	padding: 1rem
+	padding: 1rem;
+	max-width: 8%;
 }
 
 .page-margin img {
@@ -204,12 +90,140 @@ h3 {
 	font-size: 1.2rem;
 }
 
+.current-menu-item {
+	border: solid thin white;
+	-webkit-border: solid thin white;
+	-ms-border: solid thin white;
+	-moz-border: solid thin white;
+	-o-border: solid thin white;
+}
+
+/*----------------------------
+------------Header------------
+--------------------------  */
+
+.bandeau {
+	max-height: 12 rem;
+	width: 100%;
+	background-image: url(img/header-picture-opa195.png);
+	background-repeat: no-repeat;
+	-webkit-background-size: cover;
+	background-size: cover;
+	color: #92278f;
+	border-bottom: solid thin orange;
+	text-align: center;
+	font-family: 'Unna', serif;
+	font-weight: bold;
+	font-size: 3rem;
+	padding: 2.5rem 0;
+}
+
+#site-navigation ul {
+	padding: 0 1rem 1rem 1rem;
+	display: flex;
+	justify-content: center;
+}
+
+#site-navigation li {
+	border-radius: 0.2rem;
+	margin: 0rem 2%;
+	display: inline-flex;
+	text-align: center;
+	transition: border 0.6s;
+}
+
+#site-navigation li:hover, #site-navigation li:active, #site-navigation li:focus {
+	border: solid thin white;
+}
+
+#site-navigation a {
+	color: inherit;
+	text-decoration: none;
+	font-size: 1.2rem;
+	width: 10rem;
+	padding: 0.5rem;
+	transition: color 0.6s;
+}
+
+#site-navigation ul li:nth-child(1){
+	border: solid thin #faaf3a;
+	color: #faaf3a;
+	transition: background-color 0.6s;
+}
+
+#site-navigation ul li:nth-child(1):hover, #site-navigation ul li:nth-child(1):focus, #site-navigation ul li:nth-child(1):active{
+	background-color: #faaf3a;
+}
+
+#site-navigation ul li:nth-child(2){
+	border: solid thin #3fa9f5;
+	color: #3fa9f5;
+	transition: background-color 0.6s;
+}
+
+#site-navigation ul li:nth-child(2):hover, #site-navigation ul li:nth-child(2):focus, #site-navigation ul li:nth-child(2):active {
+	background-color: #3fa9f5;
+}
+
+#site-navigation ul li:nth-child(3){
+	border: solid thin green;
+	color: green;
+	transition: background-color 0.6s;
+}
+
+#site-navigation ul li:nth-child(3):hover, #site-navigation ul li:nth-child(3):focus, #site-navigation ul li:nth-child(3):active{
+	background-color: green;
+}
+
+#site-navigation ul li:nth-child(4){
+	border: solid thin #ff3399;
+	color: #ff3399;
+	transition: background-color 0.6s;
+}
+
+#site-navigation ul li:nth-child(4):hover, #site-navigation ul li:nth-child(4):focus, #site-navigation ul li:nth-child(4):active {
+	background-color: #ff3399;
+}
+
+#site-navigation ul li:nth-child(5){
+	border: solid thin #93278f;
+	color: #93278f;
+	transition: background-color 0.6s;
+}
+
+#site-navigation ul li:nth-child(5):hover, #site-navigation ul li:nth-child(5):focus, #site-navigation ul li:nth-child(5):active {
+	background-color: #93278f;
+}
+
+#site-navigation a:hover, #site-navigation a:focus, #site-navigation a:active {
+	color: white;
+}
+
+/*----------------------------
+-------------Footer-----------
+--------------------------  */
+
+.site-footer {
+	border-top: solid thin #faaf3a;
+	padding: 1rem;
+	text-align: center;
+	font-size: 0.8rem;
+	font-style: italic;
+}
+
+.site-footer p {
+	font-style: normal;
+}
+
+.site-footer a {
+	color: inherit;
+}
+
 /*----------------------------
 ---------------Home-----------
 --------------------------  */
 
 .home ul .current-menu-item {
-	border: solid 0.1rem white;
 	background-color: #faaf3a;
 }
 
@@ -219,7 +233,6 @@ h3 {
 
 .home {
 	color: #93278f;
-	font-size: 62.5%;
 }
 
 /*----------------------------
@@ -227,7 +240,6 @@ h3 {
 --------------------------  */
 
 .page-template-page-prestations ul .current-menu-item {
-	border: solid 0.1rem white;
 	background-color: #3fa9f5;
 }
 
@@ -237,7 +249,6 @@ h3 {
 
 .page-template-page-prestations {
 	color: #3fa9f5;
-	font-size: 62.5%;
 }
 
 .page-template-page-prestations h2 {
@@ -247,8 +258,11 @@ h3 {
 ---------Questions Pratiques----------
 --------------------------  */
 
+.page-template-page-questions {
+	color:green;
+}
+
 .page-template-page-questions ul .current-menu-item {
-	border: solid 0.1rem white;
 	background-color: green;
 }
 
@@ -260,7 +274,6 @@ h3 {
 	display: inline-flex;
 	flex-wrap: wrap;
 	justify-content: space-around;
-	align-content: flex-start;
 }
 
 .page-template-page-questions .main-block div {
@@ -268,7 +281,6 @@ h3 {
 	padding: 1rem;
 	margin: 1rem;
 	text-align: justify;
-	color: green;
 }
 
 /*----------------------------
@@ -276,7 +288,6 @@ h3 {
 --------------------------  */
 
 .page-template-page-qui-suis-je ul .current-menu-item {
-	border: solid 0.1rem white;
 	background-color: #93278f;
 }
 
@@ -286,5 +297,77 @@ h3 {
 
 .page-template-page-qui-suis-je {
 	color: #93278f;
-	font-size: 62.5%;
+}
+
+/*----------------------------
+-----------Ateliers-----------
+--------------------------  */
+
+.page-template-page-ateliers ul .current-menu-item {
+	background-color: #ff3399;
+}
+
+.page-template-page-ateliers ul .current-menu-item a {
+	color: white !important;
+}
+
+.page-template-page-ateliers {
+	color: #ff3399;
+}
+
+.page-template-page-ateliers .main-page {
+	width: -webkit-fill-available;
+	width: -moz-available;
+	width: -o-available;
+	width: -ms-available;
+	box-sizing: border-box;
+}
+
+.page-template-page-ateliers .main-block {
+	display: flex;
+	flex-direction: column;
+}
+
+.page-template-page-ateliers .main-block-content {
+	display: inline-flex;
+    justify-content: space-between;
+    margin: 1rem 3rem;
+}
+
+.main-block-text {
+	max-width: 61%;
+}
+
+.main-block-text h2 {
+	padding: 0 0 1.5rem 0;
+}
+
+.main-block-text span {
+	font-style: italic;
+	padding: 0.5rem 0;
+	display: block;
+}
+
+.acf-map {
+    width: 16rem;
+    height: 16rem;
+}
+
+.whithout-article {
+	display: block;
+    padding: 1rem;
+	width: 100%;
+	text-align: center;
+}
+
+/*----------------------------
+-----------Mentions-----------
+----------------------------*/
+
+.page-template-page-mentions {
+	color: green;
+}
+
+.page-template-page-mentions a {
+	color: inherit;
 }

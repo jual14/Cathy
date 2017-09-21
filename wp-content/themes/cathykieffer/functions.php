@@ -114,6 +114,16 @@ function cathykieffer_widgets_init() {
 add_action( 'widgets_init', 'cathykieffer_widgets_init' );
 
 /**
+ * Google ACF.
+ */
+function my_acf_google_map_api( $api ){
+	$api['key'] = 'AIzaSyD9WhA9Vmk1e5BALHrogyj_A1EanECh2qY';
+	return $api;
+}
+
+add_filter('acf/fields/google_map/api', 'my_acf_google_map_api');
+
+/**
  * Enqueue scripts and styles.
  */
 function cathykieffer_scripts() {
@@ -121,6 +131,10 @@ function cathykieffer_scripts() {
 	wp_enqueue_style( 'cathykieffer-style', get_stylesheet_uri() );
 
 	wp_enqueue_script('jquery');
+
+	wp_enqueue_script( 'google-map', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyD9WhA9Vmk1e5BALHrogyj_A1EanECh2qY', array(), '3', true );
+
+	wp_enqueue_script( 'google', get_template_directory_uri() . '/js/google.js', array('google-map', 'jquery'), '0.1', true );
 
 	wp_enqueue_script( 'cathykieffer-navigation', get_template_directory_uri() . '/js/nav.js', array(), '20151215', true );
 

@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: WP Cerber\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: Tue Sep 08 2015 21:38:11 GMT+0300\n"
-"POT-Revision-Date: Wed Aug 16 2017 17:10:17 GMT+0300\n"
+"POT-Revision-Date: Mon Sep 11 2017 18:39:47 GMT+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -28,7 +28,7 @@ msgstr ""
 msgid "Remove"
 msgstr ""
 
-#: ../dashboard.php:77 ../dashboard.php:502 ../wp-cerber.php:2696
+#: ../dashboard.php:77 ../dashboard.php:502 ../wp-cerber.php:2898
 msgid "IP"
 msgstr ""
 
@@ -40,7 +40,7 @@ msgstr ""
 msgid "Expires"
 msgstr ""
 
-#: ../dashboard.php:77 ../wp-cerber.php:2402
+#: ../dashboard.php:77 ../wp-cerber.php:2604
 msgid "Reason"
 msgstr ""
 
@@ -66,7 +66,7 @@ msgid "No lockouts at the moment. The sky is clear."
 msgstr ""
 
 #: ../dashboard.php:102 ../dashboard.php:483 ../dashboard.php:663 ../dashboard.
-#: php:902 ../wp-cerber.php:2822 ../settings.php:61 ../settings.php:192
+#: php:902 ../wp-cerber.php:3024 ../settings.php:61 ../settings.php:196
 msgid "White IP Access List"
 msgstr ""
 
@@ -162,11 +162,11 @@ msgstr ""
 msgid "User ID"
 msgstr ""
 
-#: ../dashboard.php:355 ../dashboard.php:502 ../wp-cerber.php:2704
+#: ../dashboard.php:355 ../dashboard.php:502 ../wp-cerber.php:2906
 msgid "Username used"
 msgstr ""
 
-#: ../dashboard.php:488 ../dashboard.php:668 ../common.php:347
+#: ../dashboard.php:488 ../dashboard.php:668 ../common.php:348
 msgid "Locked out"
 msgstr ""
 
@@ -206,7 +206,7 @@ msgstr ""
 msgid "Add IP to the Black List"
 msgstr ""
 
-#: ../dashboard.php:744 ../settings.php:215
+#: ../dashboard.php:744 ../settings.php:219
 msgid "WP Cerber Security"
 msgstr ""
 
@@ -220,7 +220,7 @@ msgid "Cerber Dashboard"
 msgstr ""
 
 #: ../dashboard.php:746 ../dashboard.php:910 ../dashboard.php:1412 ../settings.
-#: php:220
+#: php:224
 msgid "Dashboard"
 msgstr ""
 
@@ -228,7 +228,7 @@ msgstr ""
 msgid "Cerber antispam settings"
 msgstr ""
 
-#: ../dashboard.php:748 ../settings.php:143
+#: ../dashboard.php:748 ../wp-cerber.php:3031 ../settings.php:147
 msgid "Antispam"
 msgstr ""
 
@@ -314,21 +314,21 @@ msgstr[1] ""
 msgid "Citadel mode"
 msgstr ""
 
-#: ../dashboard.php:906 ../settings.php:157
+#: ../dashboard.php:906 ../settings.php:161
 msgid "Push notifications"
 msgstr ""
 
-#: ../dashboard.php:911 ../dashboard.php:1082 ../wp-cerber.php:2695 ../settings.
-#: php:82 ../settings.php:222
+#: ../dashboard.php:911 ../dashboard.php:1082 ../wp-cerber.php:2897 ../settings.
+#: php:82 ../settings.php:226
 msgid "Activity"
 msgstr ""
 
-#: ../dashboard.php:912 ../settings.php:226
+#: ../dashboard.php:912 ../settings.php:230
 msgid "Lockouts"
 msgstr ""
 
-#: ../dashboard.php:913 ../dashboard.php:1413 ../wp-cerber.php:2828 ../settings.
-#: php:231 ../cerber-tools.php:87 ../cerber-tools.php:96 ../cerber-tools.php:162
+#: ../dashboard.php:913 ../dashboard.php:1413 ../wp-cerber.php:3030 ../settings.
+#: php:235 ../cerber-tools.php:87 ../cerber-tools.php:96 ../cerber-tools.php:162
 msgid "Access Lists"
 msgstr ""
 
@@ -462,9 +462,9 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: ../wp-cerber.php:560 ../wp-cerber.php:572 ../wp-cerber.php:579 ../wp-cerber.
-#: php:717 ../wp-cerber.php:922 ../wp-cerber.php:927 ../wp-cerber.php:932 ../wp-
-#: cerber.php:938 ../wp-cerber.php:968 ../wp-cerber.php:1062 ../common.php:128 ..
-#: /common.php:181 ../common.php:185 ../settings.php:513
+#: php:746 ../wp-cerber.php:951 ../wp-cerber.php:956 ../wp-cerber.php:961 ../wp-
+#: cerber.php:967 ../wp-cerber.php:997 ../wp-cerber.php:1093 ../common.php:128 ..
+#: /common.php:181 ../common.php:185 ../settings.php:517
 msgid "ERROR:"
 msgstr ""
 
@@ -474,179 +474,179 @@ msgid ""
 "block below."
 msgstr ""
 
-#: ../wp-cerber.php:728
+#: ../wp-cerber.php:757
 #, php-format
 msgid ""
 "<strong>ERROR</strong>: The password you entered for the username %s is "
 "incorrect."
 msgstr ""
 
-#: ../wp-cerber.php:923 ../wp-cerber.php:939
+#: ../wp-cerber.php:952 ../wp-cerber.php:968
 msgid "You are not allowed to register."
 msgstr ""
 
-#: ../wp-cerber.php:933
+#: ../wp-cerber.php:962
 msgid "Username is not allowed. Please choose another one."
 msgstr ""
 
-#: ../wp-cerber.php:1062
+#: ../wp-cerber.php:1093
 msgid "Sorry, human verification failed."
 msgstr ""
 
-#: ../wp-cerber.php:2348
+#: ../wp-cerber.php:2550
 msgid "WP Cerber notify"
 msgstr ""
 
-#: ../wp-cerber.php:2366
+#: ../wp-cerber.php:2568
 msgid "Citadel mode is activated"
 msgstr ""
 
-#: ../wp-cerber.php:2368
+#: ../wp-cerber.php:2570
 #, php-format
 msgid "Citadel mode is activated after %d failed login attempts in %d minutes."
 msgstr ""
 
-#: ../wp-cerber.php:2369
+#: ../wp-cerber.php:2571
 #, php-format
 msgid "Last failed attempt was at %s from IP %s with user login: %s."
 msgstr ""
 
-#: ../wp-cerber.php:2370 ../wp-cerber.php:2720
+#: ../wp-cerber.php:2572 ../wp-cerber.php:2922
 msgid "View activity in dashboard"
 msgstr ""
 
-#: ../wp-cerber.php:2395
+#: ../wp-cerber.php:2597
 msgid "unspecified"
 msgstr ""
 
-#: ../wp-cerber.php:2398
+#: ../wp-cerber.php:2600
 msgid "Number of lockouts is increasing"
 msgstr ""
 
-#: ../wp-cerber.php:2400
+#: ../wp-cerber.php:2602
 msgid "Number of active lockouts"
 msgstr ""
 
-#: ../wp-cerber.php:2401
+#: ../wp-cerber.php:2603
 #, php-format
 msgid "Last lockout was added: %s for IP %s"
 msgstr ""
 
-#: ../wp-cerber.php:2403
+#: ../wp-cerber.php:2605
 msgid "View activity for this IP"
 msgstr ""
 
-#: ../wp-cerber.php:2404
+#: ../wp-cerber.php:2606
 msgid "View lockouts in dashboard"
 msgstr ""
 
-#: ../wp-cerber.php:2407 ../wp-cerber.php:2409
+#: ../wp-cerber.php:2609 ../wp-cerber.php:2611
 msgid "A new version of WP Cerber is available to install"
 msgstr ""
 
-#: ../wp-cerber.php:2408
+#: ../wp-cerber.php:2610
 msgid "Hi!"
 msgstr ""
 
-#: ../wp-cerber.php:2410 ../wp-cerber.php:2421
+#: ../wp-cerber.php:2612 ../wp-cerber.php:2623
 msgid "Website"
 msgstr ""
 
-#: ../wp-cerber.php:2413 ../wp-cerber.php:2414
+#: ../wp-cerber.php:2615 ../wp-cerber.php:2616
 msgid "The WP Cerber security plugin has been deactivated"
 msgstr ""
 
-#: ../wp-cerber.php:2416
+#: ../wp-cerber.php:2618
 msgid "Not logged in"
 msgstr ""
 
-#: ../wp-cerber.php:2422
+#: ../wp-cerber.php:2624
 msgid "By user"
 msgstr ""
 
-#: ../wp-cerber.php:2423
+#: ../wp-cerber.php:2625
 msgid "From IP address"
 msgstr ""
 
-#: ../wp-cerber.php:2426
+#: ../wp-cerber.php:2628
 msgid "From country"
 msgstr ""
 
-#: ../wp-cerber.php:2430
+#: ../wp-cerber.php:2632
 msgid "The WP Cerber security plugin is now active"
 msgstr ""
 
-#: ../wp-cerber.php:2431 ../wp-cerber.php:2821
+#: ../wp-cerber.php:2633 ../wp-cerber.php:3023
 msgid "WP Cerber is now active and has started protecting your site"
 msgstr ""
 
-#: ../wp-cerber.php:2432
+#: ../wp-cerber.php:2634
 msgid "Change notification settings"
 msgstr ""
 
-#: ../wp-cerber.php:2437
+#: ../wp-cerber.php:2639
 msgid "New Custom login URL"
 msgstr ""
 
-#: ../wp-cerber.php:2441 ../wp-cerber.php:2442
+#: ../wp-cerber.php:2643 ../wp-cerber.php:2644
 msgid "A new activity has been recorded"
 msgstr ""
 
-#: ../wp-cerber.php:2457
+#: ../wp-cerber.php:2659
 msgid "This message was sent by"
 msgstr ""
 
-#: ../wp-cerber.php:2700
+#: ../wp-cerber.php:2902
 msgid "User"
 msgstr ""
 
-#: ../wp-cerber.php:2708
+#: ../wp-cerber.php:2910
 msgid "Search string"
 msgstr ""
 
-#: ../wp-cerber.php:2721
+#: ../wp-cerber.php:2923
 msgid "To unsubscribe click here"
 msgstr ""
 
-#: ../wp-cerber.php:2796
+#: ../wp-cerber.php:2998
 #, php-format
 msgid "The WP Cerber requires PHP %s or higher. You are running"
 msgstr ""
 
-#: ../wp-cerber.php:2800
+#: ../wp-cerber.php:3002
 #, php-format
 msgid "The WP Cerber requires WordPress %s or higher. You are running"
 msgstr ""
 
-#: ../wp-cerber.php:2805
+#: ../wp-cerber.php:3007
 msgid "Can't activate WP Cerber due to a database error."
 msgstr ""
 
-#: ../wp-cerber.php:2822
+#: ../wp-cerber.php:3024
 msgid "Your IP address is added to the"
 msgstr ""
 
-#: ../wp-cerber.php:2824
+#: ../wp-cerber.php:3026
 msgid "It's important to check security settings."
 msgstr ""
 
-#: ../wp-cerber.php:2827 ../settings.php:228
+#: ../wp-cerber.php:3029 ../settings.php:232
 msgid "Main Settings"
 msgstr ""
 
-#: ../wp-cerber.php:2829 ../settings.php:233
+#: ../wp-cerber.php:3032 ../settings.php:237
 msgid "Hardening"
 msgstr ""
 
-#: ../wp-cerber.php:2830 ../settings.php:62 ../settings.php:80 ../settings.php:238
+#: ../wp-cerber.php:3033 ../settings.php:62 ../settings.php:80 ../settings.php:242
 msgid "Notifications"
 msgstr ""
 
-#: ../wp-cerber.php:2831
+#: ../wp-cerber.php:3034
 msgid "Import settings"
 msgstr ""
 
-#: ../whois.php:210 ../common.php:374
+#: ../whois.php:210 ../common.php:375
 msgid "Unknown"
 msgstr ""
 
@@ -682,71 +682,75 @@ msgstr ""
 msgid "Spam comment denied"
 msgstr ""
 
-#: ../common.php:348
+#: ../common.php:345
+msgid "Spam form submission denied"
+msgstr ""
+
+#: ../common.php:349
 msgid "IP blacklisted"
 msgstr ""
 
-#: ../common.php:350
+#: ../common.php:351
 msgid "by Cerber Lab"
 msgstr ""
 
-#: ../common.php:354
+#: ../common.php:355
 msgid "Password changed"
 msgstr ""
 
-#: ../common.php:355
+#: ../common.php:356
 msgid "Password reset requested"
 msgstr ""
 
-#: ../common.php:357
+#: ../common.php:358
 msgid "reCAPTCHA verification failed"
 msgstr ""
 
-#: ../common.php:358
+#: ../common.php:359
 msgid "reCAPTCHA settings are incorrect"
 msgstr ""
 
-#: ../common.php:359
+#: ../common.php:360
 msgid "Request to the Google reCAPTCHA service failed"
 msgstr ""
 
-#: ../common.php:361
+#: ../common.php:362
 msgid "Attempt to access prohibited URL"
 msgstr ""
 
-#: ../common.php:362 ../common.php:377
+#: ../common.php:363 ../common.php:378
 msgid "Attempt to log in with non-existent username"
 msgstr ""
 
-#: ../common.php:363 ../common.php:378
+#: ../common.php:364 ../common.php:379
 msgid "Attempt to log in with prohibited username"
 msgstr ""
 
-#: ../common.php:365
+#: ../common.php:366
 msgid "Attempt to log in denied"
 msgstr ""
 
-#: ../common.php:366
+#: ../common.php:367
 msgid "Attempt to register denied"
 msgstr ""
 
-#: ../common.php:375
+#: ../common.php:376
 msgid "Limit on login attempts is reached"
 msgstr ""
 
-#: ../common.php:376
+#: ../common.php:377
 msgid "Attempt to access"
 msgstr ""
 
-#: ../common.php:379
+#: ../common.php:380
 msgid "Limit on failed reCAPTCHA verifications is reached"
 msgstr ""
 
-#: ../common.php:380
+#: ../common.php:381
 msgid "Bot activity is detected"
 msgstr ""
 
-#: ../common.php:432
+#: ../common.php:433
 #, php-format
 msgid "%s ago"
 msgstr ""
@@ -771,7 +775,7 @@ msgstr ""
 msgid "NO, maybe later"
 msgstr ""
 
-#: ../cerber-lab.php:580 ../settings.php:196
+#: ../cerber-lab.php:580 ../settings.php:200
 msgid "Know more"
 msgstr ""
 
@@ -881,7 +885,7 @@ msgstr ""
 msgid "Send notification to admin email"
 msgstr ""
 
-#: ../settings.php:80 ../settings.php:367
+#: ../settings.php:80 ../settings.php:371
 msgid "Click to send test"
 msgstr ""
 
@@ -889,7 +893,7 @@ msgstr ""
 msgid "Keep records for"
 msgstr ""
 
-#: ../settings.php:83 ../settings.php:126
+#: ../settings.php:83 ../settings.php:130
 msgid "days"
 msgstr ""
 
@@ -1005,7 +1009,7 @@ msgstr ""
 msgid "Protect comment form with bot detection engine"
 msgstr ""
 
-#: ../settings.php:121 ../settings.php:134
+#: ../settings.php:121 ../settings.php:138
 msgid "Registration form"
 msgstr ""
 
@@ -1013,198 +1017,226 @@ msgstr ""
 msgid "Protect registration form with bot detection engine"
 msgstr ""
 
+#: ../settings.php:122
+msgid "Other forms"
+msgstr ""
+
+#: ../settings.php:122
+msgid "Protect all forms on the website with bot detection engine"
+msgstr ""
+
 #: ../settings.php:124
-msgid "Comment processing"
+msgid "Adjust antispam engine"
 msgstr ""
 
 #: ../settings.php:125
-msgid "If a spam comment detected"
+msgid "Safe mode"
+msgstr ""
+
+#: ../settings.php:125
+msgid "Use less restrictive policies (allow AJAX)"
 msgstr ""
 
 #: ../settings.php:126
-msgid "Trash spam comments"
+msgid "Logged in users"
 msgstr ""
 
 #: ../settings.php:126
-msgid "Move spam comments to trash after"
+msgid "Disable bot detection engine for logged in users"
+msgstr ""
+
+#: ../settings.php:128
+msgid "Comment processing"
 msgstr ""
 
 #: ../settings.php:129
-msgid "reCAPTCHA settings"
+msgid "If a spam comment detected"
 msgstr ""
 
 #: ../settings.php:130
+msgid "Trash spam comments"
+msgstr ""
+
+#: ../settings.php:130
+msgid "Move spam comments to trash after"
+msgstr ""
+
+#: ../settings.php:133
+msgid "reCAPTCHA settings"
+msgstr ""
+
+#: ../settings.php:134
 msgid "Site key"
 msgstr ""
 
-#: ../settings.php:131
+#: ../settings.php:135
 msgid "Secret key"
 msgstr ""
 
-#: ../settings.php:132
+#: ../settings.php:136
 msgid "Invisible reCAPTCHA"
 msgstr ""
 
-#: ../settings.php:132
+#: ../settings.php:136
 msgid "Enable invisible reCAPTCHA"
 msgstr ""
 
-#: ../settings.php:132
+#: ../settings.php:136
 msgid ""
 "(do not enable it unless you get and enter the Site and Secret keys for the "
 "invisible version)"
 msgstr ""
 
-#: ../settings.php:134
+#: ../settings.php:138
 msgid "Enable reCAPTCHA for WordPress registration form"
 msgstr ""
 
-#: ../settings.php:135
+#: ../settings.php:139
 msgid "Enable reCAPTCHA for WooCommerce registration form"
 msgstr ""
 
-#: ../settings.php:137
+#: ../settings.php:141
 msgid "Lost password form"
 msgstr ""
 
-#: ../settings.php:137
+#: ../settings.php:141
 msgid "Enable reCAPTCHA for WordPress lost password form"
 msgstr ""
 
-#: ../settings.php:138
+#: ../settings.php:142
 msgid "Enable reCAPTCHA for WooCommerce lost password form"
 msgstr ""
 
-#: ../settings.php:140
+#: ../settings.php:144
 msgid "Login form"
 msgstr ""
 
-#: ../settings.php:140
+#: ../settings.php:144
 msgid "Enable reCAPTCHA for WordPress login form"
 msgstr ""
 
-#: ../settings.php:141
+#: ../settings.php:145
 msgid "Enable reCAPTCHA for WooCommerce login form"
 msgstr ""
 
-#: ../settings.php:143
+#: ../settings.php:147
 msgid "Enable reCAPTCHA for WordPress comment form"
 msgstr ""
 
-#: ../settings.php:144
+#: ../settings.php:148
 msgid "Disable reCAPTCHA for logged in users"
 msgstr ""
 
-#: ../settings.php:146
+#: ../settings.php:150
 msgid "Limit attempts"
 msgstr ""
 
-#: ../settings.php:146
+#: ../settings.php:150
 #, php-format
 msgid "Lock out IP address for %s minutes after %s failed attempts within %s minutes"
 msgstr ""
 
-#: ../settings.php:152
+#: ../settings.php:156
 msgid "Email notifications"
 msgstr ""
 
-#: ../settings.php:154
+#: ../settings.php:158
 msgid "Email Address"
 msgstr ""
 
-#: ../settings.php:154
+#: ../settings.php:158
 msgid "Use comma to specify multiple values"
 msgstr ""
 
-#: ../settings.php:154
+#: ../settings.php:158
 #, php-format
 msgid "if empty, the admin email %s will be used"
 msgstr ""
 
-#: ../settings.php:155
+#: ../settings.php:159
 msgid "Notification limit"
 msgstr ""
 
-#: ../settings.php:155
+#: ../settings.php:159
 msgid "notification letters allowed per hour (0 means unlimited)"
 msgstr ""
 
-#: ../settings.php:164
+#: ../settings.php:168
 msgid "All connected devices"
 msgstr ""
 
-#: ../settings.php:165
+#: ../settings.php:169
 msgid "No devices found"
 msgstr ""
 
-#: ../settings.php:167
+#: ../settings.php:171
 msgid "Not available"
 msgstr ""
 
-#: ../settings.php:178
+#: ../settings.php:182
 msgid "Make your protection smarter!"
 msgstr ""
 
-#: ../settings.php:182
+#: ../settings.php:186
 msgid ""
 "Please enable Permalinks to use this feature. Set Permalink Settings to "
 "something other than Default."
 msgstr ""
 
-#: ../settings.php:185
+#: ../settings.php:189
 msgid ""
 "Be careful when enabling this options. If you forget the custom login URL "
 "you will not be able to login."
 msgstr ""
 
-#: ../settings.php:189
+#: ../settings.php:193
 msgid ""
 "In the Citadel mode nobody is able to log in except IPs from the White IP "
 "Access List. Active user sessions will not be affected."
 msgstr ""
 
-#: ../settings.php:192
+#: ../settings.php:196
 msgid "These settings do not affect hosts from the "
 msgstr ""
 
-#: ../settings.php:195
+#: ../settings.php:199
 msgid ""
 "Before you can start using reCAPTCHA, you have to obtain Site key and Secret "
 "key on the Google website"
 msgstr ""
 
-#: ../settings.php:235
+#: ../settings.php:239
 msgid "Users"
 msgstr ""
 
-#: ../settings.php:240
+#: ../settings.php:244
 msgid "Help"
 msgstr ""
 
-#: ../settings.php:353
+#: ../settings.php:357
 #, php-format
 msgid "%s allowed retries in %s minutes"
 msgstr ""
 
-#: ../settings.php:358
+#: ../settings.php:362
 #, php-format
 msgid "Increase lockout duration to %s hours after %s lockouts in the last %s hours"
 msgstr ""
 
-#: ../settings.php:365
+#: ../settings.php:369
 msgid "Notify admin if the number of active lockouts above"
 msgstr ""
 
-#: ../settings.php:370
+#: ../settings.php:374
 #, php-format
 msgid "Enable after %s failed login attempts in last %s minutes"
 msgstr ""
 
-#: ../settings.php:460
+#: ../settings.php:464
 msgid "Attention! You have changed the login URL! The new login URL is"
 msgstr ""
 
-#: ../settings.php:540
+#: ../settings.php:544
 msgid "<strong>ERROR</strong>: please enter a valid email address."
 msgstr ""
 

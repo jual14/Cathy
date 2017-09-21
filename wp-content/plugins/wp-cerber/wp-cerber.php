@@ -5,7 +5,7 @@
 	Description: Protects site from brute force attacks, bots and hackers. Antispam protection with reCAPTCHA. Comprehensive control of user activity. Restrict login by IP access lists. Limit login attempts. Know more: <a href="http://wpcerber.com">wpcerber.com</a>.
 	Author: Gregory
 	Author URI: http://wpcerber.com
-	Version: 5.0
+	Version: 5.1
 	Text Domain: wp-cerber
 	Domain Path: /languages
 	Network: true
@@ -59,7 +59,7 @@
 // If this file is called directly, abort executing.
 if ( ! defined( 'WPINC' ) ) { exit; }
 
-define( 'CERBER_VER', '5.0' );
+define( 'CERBER_VER', '5.1' );
 define( 'CERBER_LOG_TABLE', 'cerber_log' );
 define( 'CERBER_ACL_TABLE', 'cerber_acl' );
 define( 'CERBER_BLOCKS_TABLE', 'cerber_blocks' );
@@ -647,7 +647,8 @@ function cerber_init() {
 	Display login form if Custom login URL has been requested
 
 */
-add_action( 'init', 'cerber_wp_login_page', 20 );
+//add_action( 'init', 'cerber_wp_login_page', 20 );
+add_action( 'setup_theme', 'cerber_wp_login_page' ); // @since 5.05
 function cerber_wp_login_page() {
 	global $wp_cerber;
 	if ( $path = $wp_cerber->getSettings( 'loginpath' ) ) {
@@ -665,6 +666,34 @@ function cerber_wp_login_page() {
 			exit;
 		}
 	}
+}
+
+/**
+ * Check if the current request is a login page / form request
+ *
+ * @return bool
+ */
+function cerber_is_login_request() {
+	global $wp_cerber;
+	if ( $path = $wp_cerber->getSettings( 'loginpath' ) ) {
+		$request = $_SERVER['REQUEST_URI'];
+		if ( $pos = strpos( $request, '?' ) ) {
+			//$request = explode( '?', $request );
+			//$request = array_shift( $request );
+			$request = substr( $request, 0, $pos - 1 ); // @since 4.8
+		}
+		$request = explode( '/', rtrim( $request, '/' ) );
+		//$request = array_pop( $request );
+		$request = end($request); // @since 4.8
+		if ( $path == $request && !cerber_is_rest_url() ) {
+		    return true;
+		}
+	}
+	elseif ( 0 === strpos( trim( $_SERVER['REQUEST_URI'], '/' ), WP_LOGIN_SCRIPT ) ) {
+		return true;
+	}
+
+	return false;
 }
 
 /*
@@ -1018,12 +1047,14 @@ else {
 
 }
 /**
- * Check if if submitted comment is allowed
+ * Check if a submitted comment is allowed
  *
  * @return bool
  */
 function cerber_is_comment_allowed(){
 	global $wp_cerber;
+
+	if (is_admin()) return true;
 
 	$deny = false;
 
@@ -1132,7 +1163,7 @@ function cerber_redirect( $location, $status ) {
 /*
 	Direct access to the restricted WP php scripts - what will we do?
 */
-add_action( 'init', 'cerber_access_control' );
+add_action( 'init', 'cerber_access_control', 1 );
 function cerber_access_control() {
 	global $wp_cerber;
 
@@ -1207,6 +1238,94 @@ function cerber_access_control() {
 	}
 }
 
+/* Antispam */
+add_action( 'init', 'cerber_post_control', 2 );
+function cerber_post_control(){
+    global  $wp_cerber;
+
+	//if ( $_SERVER['REQUEST_METHOD'] == 'GET' && cerber_antibot_enabled( array( 'botscomm', 'botsany' ) ) ){
+	if ( $_SERVER['REQUEST_METHOD'] == 'GET' ){
+		$antibot = get_site_option( 'cerber-antibot', null );
+		if (!empty($antibot[1])) {
+			foreach ( $antibot[1] as $item ) {
+				setcookie( $item[0], $item[1], time() + 3600, COOKIEPATH );
+			}
+		}
+	}
+
+	if ( $_SERVER['REQUEST_METHOD'] != 'POST' || !cerber_antibot_enabled('botsany') ) {
+		return;
+	}
+
+	// Exceptions -----------------------------------------------------------------------
+
+	if ( cerber_acl_check( null, 'W' ) ) {
+		return;
+	}
+
+	// Comments
+	if ( 0 === strpos( trim( $_SERVER['REQUEST_URI'], '/' ), 'wp-comments-post.php' ) ) {
+		return;
+	}
+
+	// XML-RPC
+	if ( defined( 'XMLRPC_REQUEST' ) && XMLRPC_REQUEST ) {
+		return;
+	}
+
+	// Trackback
+	if ( is_trackback() ) {
+		return;
+	}
+
+	// Login page
+	if ( cerber_is_login_request() ) {
+		return;
+	}
+
+	// Admin and AJAX requests by unauthorized users
+	if ( is_admin() ) {
+		if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
+			if (is_user_logged_in()) {
+				return;
+			}
+			if ($wp_cerber->getSettings('botssafe')){
+				return;
+			}
+		}
+		else {
+			return;
+		}
+		// if ( ! ( defined( 'DOING_AJAX' ) && DOING_AJAX && !is_user_logged_in() ) ) {
+		//	return;
+		//}
+	}
+
+
+	// REST API but not a Contact Form 7 submission
+	if ( cerber_is_rest_url() ) {
+		if ( false === strpos( $_SERVER['REQUEST_URI'], 'contact-form-7' ) ) {
+			return;
+		}
+	}
+
+	$deny = false;
+
+	if ( ! cerber_is_allowed() ) {
+		$deny = true;
+		cerber_log(17); // TODO: should be another event, not 17 'spam bot'
+	}
+	elseif (cerber_is_bot('botsany')){
+		$deny = true;
+		cerber_log(17);
+    }
+
+	if ($deny){
+		cerber_forbidden_page();
+	}
+
+}
+
 /*
  * Disable pingback URL (hide from HEAD)
  */
@@ -1253,8 +1372,10 @@ add_filter( 'wp_redirect', 'cerber_no_redirect', 10, 2 );
 function cerber_no_redirect( $location, $status ) {
 	global $current_user, $wp_cerber;
 	if ( $current_user->ID == 0 && $wp_cerber->getSettings( 'noredirect' ) ) {
-		$str = 'redirect_to=' . urlencode( admin_url() );
-		if ( strpos( $location, $str ) ) {
+		//$str = 'redirect_to=' . urlencode( admin_url() );
+		$str = urlencode( '/wp-admin/' );
+		list ($junk, $redirect_to) = explode('redirect_to=',$location);
+		if ( strpos( $redirect_to, $str ) ) {
 			cerber_404_page();
 		}
 	}
@@ -1358,7 +1479,7 @@ add_action( 'auth_cookie_bad_username', 'cerber_cookie_bad' );
 add_action( 'auth_cookie_bad_hash', 'cerber_cookie_bad' );
 function cerber_cookie_bad( $cookie_elements ) {
 	cerber_login_failed( $cookie_elements['username'] );
-	wp_clear_auth_cookie();
+	//wp_clear_auth_cookie(); @since 5.05
 }
 
 /*
@@ -1402,6 +1523,10 @@ function cerber_check_groove( $hash = '' ) {
 function cerber_antibot_enabled($location) {
 	global $wp_cerber;
 
+	if ($wp_cerber->getSettings( 'botsnoauth' ) && is_user_logged_in()){
+	    return false;
+    }
+
 	if ( is_array( $location ) ) {
 		foreach ( $location as $loc ) {
 			if ( $wp_cerber->getSettings( $loc ) ) {
@@ -1428,29 +1553,65 @@ function cerber_antibot_code($location) {
 		return;
 	}
 
-	$ret = get_site_option( 'cerber-antibot', null );
+	$values = get_site_option( 'cerber-antibot', null );
 
-	/*
-	if ( empty( $ret ) ) {
-		$var = substr( str_shuffle( 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz' ), 0, 16 );
-		$val = substr( str_shuffle( '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz' ), 0, 16 );
-		$ret = array( $var, $val );
-		update_site_option( 'cerber-antibot', $ret );
-	}
-	*/
-
-	if ( empty( $ret ) || !is_array( $ret ) ) {
-		$ret = cerber_antibot_gene();
+	if ( empty( $values ) || !is_array( $values ) ) {
+		$values = cerber_antibot_gene();
 	}
 
 	?>
     <script type="text/javascript">
         jQuery(document).ready(function ($) {
+            //$( document ).ajaxStart(function() {
+            //});
+
+	        <?php // Append form fields directly to the all forms ?>
+
+            for (var i = 0; i < document.forms.length; ++i) {
+                var form = document.forms[i];
+	            <?php
+	            foreach ( $values[0] as $value ) {
+		            echo '$(form).append(\'<input type="hidden" name="' . $value[0] . '" value="' . $value[1] . '" />\');'."\n";
+	            }
+	            ?>
+            }
+
+            <?php // Ordinary submit ?>
+
             $(document).on('submit', 'form', function () {
-                $(this).append('<input type="hidden" name="<?php echo $ret[0][0]; ?>" value="<?php echo $ret[0][1]; ?>" />');
-                $(this).append('<input type="hidden" name="<?php echo $ret[1][0]; ?>" value="<?php echo $ret[1][1]; ?>" />');
+		        <?php
+                foreach ( $values[0] as $value ) {
+			        echo '$(this).append(\'<input type="hidden" name="' . $value[0] . '" value="' . $value[1] . '" />\');'."\n";
+		        }
+		        ?>
                 return true;
             });
+
+	        <?php // Pure AJAX submit with two different types of form data (object and string) ?>
+
+            jQuery.ajaxSetup({
+                beforeSend: function (e, data) {
+                    //console.log('AHA!');
+                    //console.log(Object.getOwnPropertyNames(data).sort());
+                    //console.log(data.xhr);
+
+                    if (typeof data.data === 'object' && data.data !== null) {
+	                    <?php
+	                    foreach ( $values[0] as $value ) {
+		                    echo 'data.data.append("' . $value[0] . '", "' . $value[1] . '");'."\n";
+	                    }
+	                    ?>
+                    }
+                    else {
+                        data.data =  data.data + '<?php
+		                        foreach ( $values[0] as $value ) {
+			                        echo '&' . $value[0] . '=' . $value[1];
+		                        }
+                                ?>';
+                    }
+                }
+            });
+
         });
     </script>
 	<?php
@@ -1464,14 +1625,23 @@ function cerber_antibot_code($location) {
  */
 function cerber_antibot_gene() {
 
-	$length = rand( 10, 16 );
-	$string1 = str_shuffle( 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz' );
-	$string2 = str_shuffle( '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz @*-+!?.,' );
+	$ret = array();
 
-	$ret = array(
-		array( substr( $string1, 0, $length - 1 ), substr( $string2, 0, $length + 1 ) ),
-		array( substr( $string1, 1, $length + 1 ), substr( $string2, 2, $length - 1 ) ),
-	);
+	$max = rand( 2, 4 );
+	for ( $i = 1; $i <= $max; $i ++ ) {
+		$length = rand( 10, 16 );
+		$string1 = str_shuffle( 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz' );
+		$string2 = str_shuffle( '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz.@*_[]' );
+		$ret[0][] = array( substr( $string1, 0, $length ), substr( $string2, 0, $length ) );
+	}
+
+	$max = rand( 2, 4 );
+	for ( $i = 1; $i <= $max; $i ++ ) {
+		$length = rand( 10, 16 );
+		$string1 = str_shuffle( 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz' );
+		$string2 = str_shuffle( '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz.@*_[]' );
+		$ret[1][] = array( substr( $string1, 0, $length ), substr( $string2, 0, $length ) );
+	}
 
 	update_site_option( 'cerber-antibot', $ret );
 
@@ -1479,19 +1649,20 @@ function cerber_antibot_gene() {
 }
 
 /**
- * Is a POST request (a form) was submitted by a bot
+ * Is a POST request (a form) submitted by a bot?
  *
- * @return bool|mixed|null
+ * @return bool
  */
-function cerber_is_bot($location) {
+function cerber_is_bot($location = '') {
 	global $wp_cerber;
 	static $ret = null;
 
-	if ( !$location || $_SERVER['REQUEST_METHOD'] != 'POST' ) {
-		return false;
+	if ( isset( $ret ) ) {
+		return $ret;
 	}
 
-	if ( isset( $ret ) ) {
+	if ( !$location || $_SERVER['REQUEST_METHOD'] != 'POST' || (defined( 'DOING_CRON' ) && DOING_CRON)) {
+		$ret = false;
 		return $ret;
 	}
 
@@ -1500,23 +1671,34 @@ function cerber_is_bot($location) {
 		return $ret;
 	}
 
-	$fields = get_site_option( 'cerber-antibot', null );
+	$antibot = get_site_option( 'cerber-antibot', null );
 
-	if ( empty( $fields ) ) {
-		$ret = false;
-	}
-	elseif (
-		empty( $_POST[ $fields[0][0] ] ) || $_POST[ $fields[0][0] ] != $fields[0][1]
-		|| empty( $_POST[ $fields[1][0] ] ) || $_POST[ $fields[1][0] ] != $fields[1][1]
-	) {
-		$ret = true;
-		if ( $wp_cerber->getSettings( 'cerberlab' ) ) {
-			lab_save_push( $wp_cerber->getRemoteIp(), 333, '' );
+	$ret = false;
+
+	if ( ! empty( $antibot ) ) {
+
+	    foreach ( $antibot[0] as $fields ) {
+			if ( empty( $_POST[ $fields[0] ] ) || $_POST[ $fields[0] ] != $fields[1] ) {
+				$ret = true;
+				break;
+			}
+		}
+
+		if (!$ret){
+			foreach ( $antibot[1] as $fields ) {
+				if ( empty( $_COOKIE[ $fields[0] ] ) || $_COOKIE[ $fields[0] ] != $fields[1] ) {
+					$ret = true;
+					break;
+				}
+			}
+        }
+
+		if ( $ret ) {
+			if ( $wp_cerber->getSettings( 'cerberlab' ) ) {
+				lab_save_push( $wp_cerber->getRemoteIp(), 333, '' );
+			}
 		}
 	}
-	else {
-		$ret = false;
-    }
 
 	return $ret;
 }
@@ -2257,6 +2439,28 @@ function cerber_404_page() {
 	echo '<html><head><title>404 Not Found</title></head><body><h1>Not Found</h1><p>The requested URL ' . esc_url( $_SERVER['REQUEST_URI'] ) . ' was not found on this server.</p></body></html>';
 	exit;
 }
+/*
+	Display Forbidden page
+*/
+function cerber_forbidden_page() {
+	status_header( '403' );
+	header( 'HTTP/1.0 403 Access Forbidden', true, 403 );
+	?>
+    <html>
+    <head><title>403 Access Forbidden</title></head>
+    <body>
+    <div style="display: flex; align-items: center; justify-content: center; height: 70%;">
+        <div style="background-color: #eee; width: 70%; border: solid 3px #ddd; padding: 1.5em 3em 3em 3em; font-family: Arial, Helvetica, sans-serif;">
+            <h1>We're sorry, you are not allowed to proceed</h1>
+            <p>Server stopped processing your request. Your attempt to submit the form looks similar to automated requests from spam posting software.</p>
+            <p>If you believe you should be able to submit, please let us know.</p>
+        </div>
+    </div>
+    </body>
+    </html>
+    <?php
+	exit;
+}
 
 // Citadel mode -------------------------------------------------------------------------------------
 
@@ -2826,6 +3030,7 @@ function cerber_activate() {
 
 		' <p> </p><p><span class="dashicons dashicons-admin-settings"></span> <a href="' . cerber_admin_link( 'main' ) . '">' . __( 'Main Settings', 'wp-cerber' ) . '</a>' .
 		' <span style="margin-left:20px;" class="dashicons dashicons-admin-network"></span> <a href="' . cerber_admin_link( 'acl' ) . '">' . __( 'Access Lists', 'wp-cerber' ) . '</a>' .
+		' <span style="margin-left:20px;" class="dashicons dashicons-forms"></span> <a href="' . cerber_admin_link( 'antispam' ) . '">' . __( 'Antispam', 'wp-cerber' ) . '</a>' .
 		' <span style="margin-left:20px;" class="dashicons dashicons-shield-alt"></span> <a href="' . cerber_admin_link( 'hardening' ) . '">' . __( 'Hardening', 'wp-cerber' ) . '</a>' .
 		' <span style="margin-left:20px;" class="dashicons dashicons-controls-volumeon"></span> <a href="' . cerber_admin_link( 'notifications' ) . '">' . __( 'Notifications', 'wp-cerber' ) . '</a>' .
 		' <span style="margin-left:20px;" class="dashicons dashicons-admin-tools"></span> <a href="' . cerber_admin_link( 'tools' ) . '">' . __( 'Import settings', 'wp-cerber' ) . '</a>' .
@@ -3163,7 +3368,7 @@ function cerber_add_uid( $commentdata ) {
  */
 add_action( 'login_enqueue_scripts', 'cerber_login_scripts' );
 function cerber_login_scripts() {
-	if ( cerber_antibot_enabled( 'botsreg' ) ) {
+	if ( cerber_antibot_enabled( array('botsreg', 'botsany') ) ) {
 		wp_enqueue_script( 'jquery' );
 	}
 }
@@ -3186,7 +3391,7 @@ add_action( 'login_footer', 'cerber_login_foo', 1000 );
 function cerber_login_foo( $ip ) {
     global $wp_cerber;
 
-	cerber_antibot_code('botsreg');
+	cerber_antibot_code(array( 'botsreg', 'botsany' ));
 
     // Universal JS
 	if (!$wp_cerber->recaptcha_here) return;

@@ -1,3 +1,4 @@
+//function which maintain the transition background-color of "li" before to load the page
 (function (){
 
     var container, menu, links, details;
@@ -5,38 +6,24 @@
     menu = container.getElementsByTagName('ul')[0];
     links = menu.getElementsByTagName('li');
     
-
-
-    function Youpy() {
-        // var test = document.styleSheets[1];
-        // console.log(test);
-        // // var border = this.style.borderColor.value();
-        // myCss = this;
-        // console.log(myCss);
-        // var thisCssValue = window.getComputedStyle(myCss,null);
-        // console.log(myCss);
-        if (this == document.getElementById('menu-item-12')) {
-            this.style.backgroundColor = "red";
-        } else {
-            this.style.backgroundColor = "black";
-        }
+    function changeMenuColor() {
         
+        if (this == document.getElementById('menu-item-12')) {
+            this.style.backgroundColor = "#faaf3a";
+        } else if (this == document.getElementById('menu-item-14')) {
+            this.style.backgroundColor = "#3fa9f5";
+        } else if (this == document.getElementById('menu-item-16')) {
+            this.style.backgroundColor = "green";
+        } else if (this == document.getElementById('menu-item-59')) {
+            this.style.backgroundColor = "#ff3399";
+        } else if (this == document.getElementById('menu-item-17')) {
+            this.style.backgroundColor = "#93278f";
+        }
     };
 
     for ( i = 0, len = links.length; i < len; i++ ) {
-		links[i].addEventListener( 'click', Youpy, true );
+		links[i].addEventListener( 'click', changeMenuColor, true );
 	}
     
 })();
-// ( function( $ ) {
-	
-   
-//         $( "li" ).on("click",function() {
-//             console.log("yes");
-//             this.css("background-color","red");
-//             // $("this").css("background-color","red !important");
-//             // $("this").
-//         });
-    
-// })(jQuery);
 
